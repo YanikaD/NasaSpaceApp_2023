@@ -1,9 +1,8 @@
-import './luna.css';
-import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import * as TWEEN from 'tween.js';
-
+// import './luna.css';
+import * as THREE from "three";
+import { OrbitControls } from "/jsm/controls/OrbitControls.js";
+// import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import * as TWEEN from '@tweenjs/tween.js'
 const scene = new THREE.Scene();
 
 const camera = getCamera();
@@ -128,12 +127,17 @@ function getControls() {
   return controls;
 }
 
+let shouldUpdateTWEEN = false;
+
 function animate() {
   // earth.rotation.y += 0.005;
   // sun.rotation.y+=0.0005;
   // torus.rotation.x+=0.01;
   controls.update();
-  TWEEN.update();
+  if (shouldUpdateTWEEN) {
+    // TWEEN.default.update();
+    TWEEN.update(); 
+  }
   renderer.render(scene, camera);
   requestAnimationFrame(animate);
   // console.log(camera.position)
@@ -146,6 +150,7 @@ const penumbralEclipseCard = document.getElementById("penumbralEclipse");
 
 // Add a click event listener to the card
 penumbralEclipseCard.addEventListener("click", () => {
+  shouldUpdateTWEEN = true;
   const tab1Radio = document.getElementById("tab4-1");
   tab1Radio.checked = true;
   window.location.hash = "s1_penumbral";
@@ -231,7 +236,7 @@ const penumbralEclipseTab = document.getElementById("tab4-1");
 
 // Add a click event listener to the card
 penumbralEclipseTab.addEventListener("click", () => {
-  
+    shouldUpdateTWEEN = true;
     EclipseLines.forEach(line=> {
       scene.remove(line);
       });
@@ -300,6 +305,7 @@ const totalEclipseCard = document.getElementById("totalEclipse");
 const EclipseLines = [];
 // Add a click event listener to the card
 totalEclipseCard.addEventListener("click", () => {
+  shouldUpdateTWEEN = true;
   const tab3Radio = document.getElementById("tab4-3");
   tab3Radio.checked = true;
   window.location.hash = "s1_total";
@@ -384,7 +390,7 @@ totalEclipseCard.addEventListener("click", () => {
 const totalEclipseTab = document.getElementById("tab4-3");
 // Add a click event listener to the card
 totalEclipseTab.addEventListener("click", () => {
- 
+  shouldUpdateTWEEN = true;
   EclipseLines.forEach(line=> {
     scene.remove(line);
     });
@@ -452,6 +458,7 @@ const partialEclipseCard = document.getElementById("partialEclipse");
 
 // Add a click event listener to the card
 partialEclipseCard.addEventListener("click", () => {
+  shouldUpdateTWEEN = true;
   const tab2Radio = document.getElementById("tab4-2");
   tab2Radio.checked = true;
   window.location.hash = "s1_partial";
@@ -536,7 +543,7 @@ const partialEclipseTab = document.getElementById("tab4-2");
 
 // Add a click event listener to the card
 partialEclipseTab.addEventListener("click", () => {
-  
+  shouldUpdateTWEEN = true;
   EclipseLines.forEach(line=> {
     scene.remove(line);
     });

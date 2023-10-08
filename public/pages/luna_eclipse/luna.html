@@ -22,6 +22,14 @@
       type="text/css"
       href="../solar_eclipse/another.css"
     />
+    <script type="importmap">
+      {
+          "imports": {
+              "three": "/build/three.module.js",
+              "@tweenjs/tween.js": "/dist/tween.esm.js"
+          }
+      }
+    </script>
   </head>
   <body>
     <div id="app"></div>
@@ -488,6 +496,8 @@ But sometimes, in around one out of three lunar eclipses, the Moon doesn’t rea
                 <div class="col-6 luna_type">Hybrid Eclipse</div>
             </div> -->
     </div>
+    <script type="module" src="/build/three.module.js"></script>
+    <script type="module" src="/jsm/controls/OrbitControls.js"></script>
     <!-- <a href='../../'><button>back</button></a> -->
     <script type="module" src="./luna.js"></script>
   </body>

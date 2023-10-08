@@ -2,7 +2,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "/jsm/controls/OrbitControls.js";
 // import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import * as TWEEN from "tween.js";
+import * as TWEEN from '@tweenjs/tween.js'
 
 const scene = new THREE.Scene();
 const camera = getCamera();
@@ -114,8 +114,10 @@ let shouldUpdateTWEEN = false;
 function animate() {
   controls.update();
   if (shouldUpdateTWEEN) {
+    // TWEEN.default.update();
     TWEEN.update(); 
   }
+  
   renderer.render(scene, camera);
   requestAnimationFrame(animate);
   
@@ -157,10 +159,7 @@ annularEclipseCard.addEventListener("click", () => {
     z: 18.64570913089013,
   };
   const duration = 1000;
-  new TWEEN.Tween(earth.position)
-    .to(earthPosition, duration)
-    .easing(TWEEN.Easing.Quadratic.Out)
-    .start();
+  new TWEEN.Tween(earth.position).to(earthPosition, duration).easing(TWEEN.Easing.Quadratic.Out).start();
   new TWEEN.Tween(moon.position)
     .to(moonPosition, duration)
     .easing(TWEEN.Easing.Quadratic.Out)
@@ -507,22 +506,10 @@ partialEclipseCard.addEventListener("click", () => {
     z: 18.64570913089013,
   };
   const duration = 1000;
-  new TWEEN.Tween(earth.position)
-    .to(earthPosition, duration)
-    .easing(TWEEN.Easing.Quadratic.Out)
-    .start();
-  new TWEEN.Tween(moon.position)
-    .to(moonPosition, duration)
-    .easing(TWEEN.Easing.Quadratic.Out)
-    .start();
-  new TWEEN.Tween(earth.rotation)
-    .to({ y: 9.5 }, duration)
-    .easing(TWEEN.Easing.Quadratic.Out)
-    .start();
-  new TWEEN.Tween(sun.position)
-    .to(sunPosition, duration)
-    .easing(TWEEN.Easing.Quadratic.Out)
-    .start();
+  new TWEEN.Tween(earth.position).to(earthPosition, duration).easing(TWEEN.Easing.Quadratic.Out).start();
+  new TWEEN.Tween(moon.position).to(moonPosition, duration).easing(TWEEN.Easing.Quadratic.Out).start();
+  new TWEEN.Tween(earth.rotation).to({ y: 9.5 }, duration).easing(TWEEN.Easing.Quadratic.Out).start();
+  new TWEEN.Tween(sun.position).to(sunPosition, duration).easing(TWEEN.Easing.Quadratic.Out).start();
   console.log(camera.position);
   const lineMaterial1 = new THREE.LineBasicMaterial({ color: 0xffff00 });
   const lineGeometry1 = new THREE.BufferGeometry().setFromPoints([
